@@ -8,7 +8,7 @@
 # 
 
 # Authors: Ket Hing Chong, Xiaomeng Zhang and Jie Zheng
-# Last updated: 18 February 2020 (line number 105, 3520 and 3533: To reduce the calculation time and improve the Potential Landscape)
+# Last updated: 18 February 2020 (line number 105, 3520 and 3533: To reduce the calculation time and improve the default Waddington's Epigenetic Landscape)
 # Biomedical Informatics Lab, School of Computer Science and Engineering
 # Nanyang Technological University
 # Singapore
