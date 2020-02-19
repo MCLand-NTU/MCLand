@@ -4384,7 +4384,7 @@ class MethodSettingPage(tk.Frame):
         self.entryStepSize = tk.Entry(self, width=10, textvariable=self.stepSize_h)
         self.entryStepSize.grid(row=6,column=3)
         
-        labelS2= tk.Label(self, text= "Trajectory Number (default =200):", font = NORMAL_FONT)
+        labelS2= tk.Label(self, text= "Trajectory Number (default =10000):", font = NORMAL_FONT)
         labelS2.grid(row=7, column=1, pady=2, padx=2)
         self.labelTrajNumber=tk.Label(self, text=model.TrajectoryNumber)
         self.labelTrajNumber.grid(row=7, column=2)
