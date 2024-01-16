@@ -1,0 +1,12 @@
+# CDK1a
+CDK1a'=alpha1-beta1*CDK1a*APCa^n1/(K1^n1+APCa^n1)
+#Plk1a
+Plk1a'=alpha2*(1-Plk1a)*CDK1a^n2/(K2^n2+CDK1a^n2)-beta2*Plk1a
+#APCa
+APCa'=alpha3*(1-APCa)*Plk1a^n3/(K3^n3+Plk1a^n3)-beta3*APCa
+par alpha1=0.1, alpha2=3, alpha3=3
+par beta1=3, beta2=1, beta3=1
+par K1=0.5, K2=0.5, K3=0.5
+par n1=8, n2=8, n3=8
+@ total=30, xp=t, yp=CDK1a, yp2=Plk1a, dt=0.1, xlo=0, xhi=30, ylo=0, yhi=2, maxstor=500000
+done

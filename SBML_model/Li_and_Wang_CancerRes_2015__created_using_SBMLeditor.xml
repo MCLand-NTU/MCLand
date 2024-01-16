@@ -1,0 +1,842 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model name="Li_and_Wang_CancerRes_2015" id="model" metaid="_eb34a417-87bf-41cd-b599-41e73c029f8c">
+    <notes>
+      <p xmlns="http://www.w3.org/1999/xhtml">
+    The SBML model constructed is based on Li C, Wang J. Quantifying the Landscape for Development and Cancer from a Core Cancer Stem Cell Circuit. Cancer Res. 2015:canres. 0079.2015.</p>
+      
+    </notes>
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+        <rdf:Description rdf:about="#_eb34a417-87bf-41cd-b599-41e73c029f8c">
+          <dc:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Chong</vCard:Family>
+                  <vCard:Given>Ket Hing</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>chongkething@ntu.edu.sg</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Nanyang Technological University</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+      <listOfUnitDefinitions>
+      <unitDefinition name="dimensionless" id="substance">
+        <listOfUnits>
+          <unit kind="item"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="hours" id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment name="cell" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species compartment="compartment" name="P53" id="P53" initialConcentration="0"/>
+      <species compartment="compartment" id="Mdm2" initialConcentration="0"/>
+      <species compartment="compartment" id="Oct4" initialConcentration="0"/>
+      <species compartment="compartment" id="miR145" initialConcentration="0"/>
+      <species compartment="compartment" id="Zeb" initialConcentration="0"/>
+      <species compartment="compartment" id="miR200" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="sa" value="0.8"/>
+      <parameter constant="true" id="a" value="0.5"/>
+      <parameter constant="true" id="b" value="0.1"/>
+      <parameter constant="true" id="S" value="0.5"/>
+      <parameter constant="true" id="n" value="4"/>
+      <parameter constant="true" id="k" value="1"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="P53 self activation" id="R1" reversible="false">
+        <listOfProducts>
+          <speciesReference species="P53"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P53"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> sa </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Mdm2 inhibition of P53" id="R2" reversible="false">
+        <listOfProducts>
+          <speciesReference species="P53"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Mdm2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Mdm2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="P53 degradation" id="R3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="P53"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k </ci>
+              </apply>
+              <ci> P53 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="P53 activation of Mdm2" id="R4" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Mdm2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P53"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="miR145 inhibition of Mdm2" id="R5" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Mdm2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="miR145"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> miR145 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Mdm2 degradation" id="R6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Mdm2"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Mdm2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k </ci>
+              </apply>
+              <ci> Mdm2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Oct4 self activation" id="R7" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Oct4"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Oct4"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> sa </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Oct4 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Oct4 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="P53 inhibition of Oct4" id="R8" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Oct4"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P53"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="miR145 inhibition of Oct4" id="R9" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Oct4"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="miR145"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> miR145 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Oct4 degradation" id="R10" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Oct4"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Oct4"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k </ci>
+              </apply>
+              <ci> Oct4 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="P53 activation of miR145" id="R11" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR145"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P53"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Oct4 inhibition of miR145" id="R12" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR145"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Oct4"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Oct4 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Zeb inhibition of miR145" id="R13" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR145"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Zeb"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Zeb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="miR145 degradation" id="R14" reversible="false">
+        <listOfReactants>
+          <speciesReference species="miR145"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="miR145"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k </ci>
+              </apply>
+              <ci> miR145 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Zeb self activation" id="R15" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Zeb"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Zeb"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> sa </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Zeb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Zeb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="miR145 inhibition of Zeb" id="R16" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Zeb"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="miR145"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> miR145 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="miR200 inhibition of Zeb" id="R17" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Zeb"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="miR200"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> miR200 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Zeb degradation" id="R18" reversible="false">
+        <listOfReactants>
+          <speciesReference species="Zeb"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Zeb"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k </ci>
+              </apply>
+              <ci> Zeb </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="P53 activation of miR200" id="R19" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="P53"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> P53 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Oct4 activation of miR200" id="R20" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Oct4"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Oct4 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Oct4 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Zeb inhibition of miR200" id="R21" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Zeb"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Zeb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="miR200 degradation" id="R22" reversible="false">
+        <listOfReactants>
+          <speciesReference species="miR200"/>
+        </listOfReactants>
+        <listOfModifiers>
+          <modifierSpeciesReference species="miR200"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k </ci>
+              </apply>
+              <ci> miR200 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

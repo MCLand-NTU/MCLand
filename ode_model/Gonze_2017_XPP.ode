@@ -1,0 +1,14 @@
+# Gonze et al (2017) Multi-stability and the origin of microbial community types
+#1
+X1'=X1*(b1*K12^n/(K12^n+X2^n)*K13^n/(K13^n+X3^n)-k1*X1)
+#2
+X2'=X2*(b2*K21^n/(K21^n+X1^n)*K23^n/(K23^n+X3^n)-k2*X2)
+#3
+X3'=X3*(b3*K31^n/(K31^n+X1^n)*K32^n/(K32^n+X2^n)-k3*X3)
+
+init X1=0.3, X2=0.1, X3=0.2
+par K12=0.1, K13=0.1, K21=0.1, K31=0.1, K32=0.1, n=2, k1=0.1, k2=0.1, k3=0.1, b1=1, b2=0.95, b3=1.05
+
+@ dt=0.02, NPLOT=1, XP=t, YP=u, TOTAL=100, METH=stiff, XLO=0, XHI=30, YLO=0, YHI=5, maxstor=50000, bound=10000
+done
+

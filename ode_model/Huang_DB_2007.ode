@@ -1,0 +1,14 @@
+# Cell fate induction
+# Huang_DB_2007.ode
+#
+#
+#
+x1'=a1*x1^n/(S^n+x1^n)+b1*S^n/(S^n+x2^n)-k1*x1
+x2'=a2*x2^n/(S^n+x2^n)+b2*S^n/(S^n+x1^n)-k2*x2
+param b1=1, b2=1, k1=1, k2=1, S=0.5, n=4, a1=1, a2=1 
+@ total=500, xp=t, yp=x1, dt=0.01, xlo=0, xhi=500, ylo=0, yhi=50, maxstor=500000
+# AUTO stuff
+@ AutoXMin=0, AutoXMax=3
+@ AutoYMin=0, AutoYMax=3
+@ Nmax=1000, NPr=200, ParMin=0, ParMax=20, Ds=0.01
+done

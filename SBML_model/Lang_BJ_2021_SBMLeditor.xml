@@ -1,0 +1,1873 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model name="Lang_BJ_2021" id="model" metaid="_2bb32361-0f40-41a4-9dfb-34e64db1838e">
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#">
+        <rdf:Description rdf:about="#_2bb32361-0f40-41a4-9dfb-34e64db1838e">
+          <dc:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Chong</vCard:Family>
+                  <vCard:Given>Ket Hing</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>kething.chong@lincolnuni.ac.nz</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Nanyang Technological University</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+      <listOfUnitDefinitions>
+      <unitDefinition name="dimensionless" id="substance">
+        <listOfUnits>
+          <unit kind="item"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="hours" id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment name="cell" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species compartment="compartment" name="TGFbeta" id="TGFbeta" initialConcentration="0"/>
+      <species compartment="compartment" name="ZEB1" id="ZEB1" initialConcentration="0"/>
+      <species compartment="compartment" name="ZEB2" id="ZEB2" initialConcentration="0"/>
+      <species compartment="compartment" name="SNAI1" id="SNAI1" initialConcentration="0"/>
+      <species compartment="compartment" name="SNAI2" id="SNAI2" initialConcentration="0"/>
+      <species compartment="compartment" name="TWIST1" id="TWIST1" initialConcentration="0"/>
+      <species compartment="compartment" name="FOXC2" id="FOXC2" initialConcentration="0"/>
+      <species compartment="compartment" name="GSC" id="GSC" initialConcentration="0"/>
+      <species compartment="compartment" name="TCF3" id="TCF3" initialConcentration="0"/>
+      <species compartment="compartment" name="VIM" id="VIM" initialConcentration="0"/>
+      <species compartment="compartment" name="miR145" id="miR145" initialConcentration="0"/>
+      <species compartment="compartment" name="miR141" id="miR141" initialConcentration="0"/>
+      <species compartment="compartment" name="miR200" id="miR200" initialConcentration="0"/>
+      <species compartment="compartment" name="miR34a" id="miR34a" initialConcentration="0"/>
+      <species compartment="compartment" name="Ovol2" id="Ovol2" initialConcentration="0"/>
+      <species compartment="compartment" name="CDH1" id="CDH1" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="a" value="2"/>
+      <parameter constant="true" id="tilde" value="7.9"/>
+      <parameter constant="true" id="b" value="4"/>
+      <parameter constant="true" id="sa" value="5.8"/>
+      <parameter constant="true" id="sb" value="0.21"/>
+      <parameter constant="true" id="n" value="4"/>
+      <parameter constant="true" id="k" value="1"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="FOXC2 inhibition of CDH1" id="R1" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="FOXC2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> FOXC2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="GSC activation of FOXC2" id="R2" reversible="false">
+        <listOfProducts>
+          <speciesReference species="FOXC2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="GSC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="GSC activation of SNAI1" id="R3" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SNAI1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="GSC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="GSC activation of ZEB1" id="R4" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="GSC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="GSC activation of ZEB2" id="R5" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="GSC"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> GSC </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Ovol2 inhibition of SNAI1" id="R6" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SNAI1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Ovol2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Ovol2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Ovol2 inhibition of TGFbeta" id="R7" reversible="false">
+        <listOfProducts>
+          <speciesReference species="TGFbeta"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Ovol2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Ovol2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Ovol2 inhibition of VIM" id="R8" reversible="false">
+        <listOfProducts>
+          <speciesReference species="VIM"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Ovol2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Ovol2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="Ovol2 inhibition of ZEB1" id="R9" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="Ovol2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> Ovol2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 inhibition of CDH1" id="R10" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 activation of FOXC2" id="R11" reversible="false">
+        <listOfProducts>
+          <speciesReference species="FOXC2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 inhibition of SNAI1" id="R12" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SNAI1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 inhibition of miR200" id="R13" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 activation of TWIST1" id="R14" reversible="false">
+        <listOfProducts>
+          <speciesReference species="TWIST1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 activation of VIM" id="R15" reversible="false">
+        <listOfProducts>
+          <speciesReference species="VIM"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 activation of  ZEB1" id="R16" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 activation of ZEB2" id="R17" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI1 inhibition of miR34a" id="R18" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR34a"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI2 inhibition of CDH1" id="R19" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI2 activation of SNAI2" id="R20" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SNAI2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> tilde </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI2 activation of VIM" id="R21" reversible="false">
+        <listOfProducts>
+          <speciesReference species="VIM"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="SNAI2 inhibition of miR200" id="R22" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="SNAI2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> SNAI2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TCF3 inhibition of CDH1" id="R23" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TCF3"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TCF3 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TGFbeta activation of GSC" id="R24" reversible="false">
+        <listOfProducts>
+          <speciesReference species="GSC"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TGFbeta"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TGFbeta </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TGFbeta </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TGFbeta activation of SNAI2" id="R25" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SNAI2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TGFbeta"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TGFbeta </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TGFbeta </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TGFbeta activation of ZEB1" id="R26" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TGFbeta"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TGFbeta </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TGFbeta </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TWIST1 inhibition of CDH1" id="R27" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TWIST1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TWIST1 activation of FOXC2" id="R28" reversible="false">
+        <listOfProducts>
+          <speciesReference species="FOXC2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TWIST1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TWIST1 activation of SNAI2" id="R29" reversible="false">
+        <listOfProducts>
+          <speciesReference species="SNAI2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TWIST1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TWIST1 activation of TCF3" id="R30" reversible="false">
+        <listOfProducts>
+          <speciesReference species="TCF3"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TWIST1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TWIST1 activation of VIM" id="R31" reversible="false">
+        <listOfProducts>
+          <speciesReference species="VIM"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TWIST1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="TWIST1 activation of ZEB2" id="R32" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="TWIST1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> TWIST1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 inhibition of CDH1" id="R33" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 inhibition of Ovol2" id="R34" reversible="false">
+        <listOfProducts>
+          <speciesReference species="Ovol2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 activation of ZEB1" id="R35" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> tilde </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 activation of VIM" id="R36" reversible="false">
+        <listOfProducts>
+          <speciesReference species="VIM"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 inhibition of miR141" id="R37" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR141"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 inhibition of miR200" id="R38" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 inhibition of miR34a" id="R39" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR34a"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB1 inhibition of miR145" id="R40" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR145"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB2 inhibition of CDH1" id="R41" reversible="false">
+        <listOfProducts>
+          <speciesReference species="CDH1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB2 activation of VIM" id="R42" reversible="false">
+        <listOfProducts>
+          <speciesReference species="VIM"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB2 activation of ZEB2" id="R43" reversible="false">
+        <listOfProducts>
+          <speciesReference species="ZEB2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> tilde </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sa </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="ZEB2 inhibition of miR200" id="R44" reversible="false">
+        <listOfProducts>
+          <speciesReference species="miR200"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="ZEB2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> sb </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> ZEB2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

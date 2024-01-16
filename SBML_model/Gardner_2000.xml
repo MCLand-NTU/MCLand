@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model name="Gardner_2000" id="model" metaid="_ccbc3524-6b8c-4133-bbf1-12bc790e65b4">
+    <annotation>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:dcterms="http://purl.org/dc/terms/">
+        <rdf:Description rdf:about="#_ccbc3524-6b8c-4133-bbf1-12bc790e65b4">
+          <dc:creator>
+            <rdf:Bag>
+              <rdf:li rdf:parseType="Resource">
+                <vCard:N rdf:parseType="Resource">
+                  <vCard:Family>Chong</vCard:Family>
+                  <vCard:Given>Ket Hing</vCard:Given>
+                </vCard:N>
+                <vCard:EMAIL>chongkething@ntu.edu.sg</vCard:EMAIL>
+                <vCard:ORG rdf:parseType="Resource">
+                  <vCard:Orgname>Nanyang Technological University</vCard:Orgname>
+                </vCard:ORG>
+              </rdf:li>
+            </rdf:Bag>
+          </dc:creator>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+      <listOfUnitDefinitions>
+      <unitDefinition name="dimensionless" id="substance">
+        <listOfUnits>
+          <unit kind="item"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="hours" id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment name="cell" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species compartment="compartment" name="u" id="u" initialConcentration="0"/>
+      <species compartment="compartment" name="v" id="v" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="alpha1" value="3"/>
+      <parameter constant="true" id="alpha2" value="3"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="v inhibition of u" id="R1" reversible="false">
+        <listOfProducts>
+          <speciesReference species="u"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="v"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> alpha1 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <power/>
+                  <ci> v </ci>
+                  <cn type="integer"> 3 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="u degradation" id="R2" reversible="false">
+        <listOfReactants>
+          <speciesReference species="u"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> u </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="u inhibition of v" id="R3" reversible="false">
+        <listOfProducts>
+          <speciesReference species="v"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="u"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> alpha2 </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <cn type="integer"> 1 </cn>
+                <apply>
+                  <power/>
+                  <ci> u </ci>
+                  <cn type="integer"> 3 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="v degradation" id="R4" reversible="false">
+        <listOfReactants>
+          <speciesReference species="v"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <ci> compartment </ci>
+              <ci> v </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

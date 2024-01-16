@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model name="Huang_DB_2007" id="model">
+    <listOfUnitDefinitions>
+      <unitDefinition name="dimensionless" id="substance">
+        <listOfUnits>
+          <unit kind="item"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition name="hours" id="time">
+        <listOfUnits>
+          <unit kind="second" multiplier="3600"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment name="cell" id="compartment" size="1"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species compartment="compartment" name="x1" id="x1" initialConcentration="0"/>
+      <species compartment="compartment" name="x2" id="x2" initialConcentration="0"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter constant="true" id="a1" value="1"/>
+      <parameter constant="true" id="a2" value="1"/>
+      <parameter constant="true" id="b1" value="1"/>
+      <parameter constant="true" id="b2" value="1"/>
+      <parameter constant="true" id="k1" value="1"/>
+      <parameter constant="true" id="k2" value="1"/>
+      <parameter constant="true" id="S" value="0.5"/>
+      <parameter constant="true" id="n" value="4"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction name="x1 self activation" id="R1" reversible="false">
+        <listOfProducts>
+          <speciesReference species="x1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="x1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a1 </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> x1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> x1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="x2 inhibition of x1" id="R2" reversible="false">
+        <listOfProducts>
+          <speciesReference species="x1"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="x2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b1 </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> x2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="degradation of x1" id="R3" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x1"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k1 </ci>
+              </apply>
+              <ci> x1 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="x2 self activation" id="R4" reversible="false">
+        <listOfProducts>
+          <speciesReference species="x2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="x2"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> a2 </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> x2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> x2 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="x1 inhibition of x2" id="R5" reversible="false">
+        <listOfProducts>
+          <speciesReference species="x2"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="x1"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <apply>
+                  <times/>
+                  <ci> compartment </ci>
+                  <ci> b2 </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <apply>
+                  <power/>
+                  <ci> S </ci>
+                  <ci> n </ci>
+                </apply>
+                <apply>
+                  <power/>
+                  <ci> x1 </ci>
+                  <ci> n </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction name="x2 degradation" id="R6" reversible="false">
+        <listOfReactants>
+          <speciesReference species="x2"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">          
+            <apply>
+              <times/>
+              <apply>
+                <times/>
+                <ci> compartment </ci>
+                <ci> k2 </ci>
+              </apply>
+              <ci> x2 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>

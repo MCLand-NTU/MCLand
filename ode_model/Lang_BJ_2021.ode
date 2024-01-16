@@ -1,0 +1,28 @@
+# EMT Landscape
+#Lang_BJ_2021.ode
+#
+#as*x1^n/(sa^n+x1^n)
+#a*x1^n/(sa^n+x1^n)
+#b*sb^n/(sb^n+x2^n)
+TGFbeta'=b*sb^n/(sb^n+Ovol2^n)-k*TGFbeta
+ZEB1'=as*ZEB1^n/(sa^n+ZEB1^n)+a*TGFbeta^n/(sa^n+TGFbeta^n)+a*SNAI1^n/(sa^n+SNAI1^n)+b*sb^n/(sb^n+Ovol2^n)+a*GSC^n/(sa^n+GSC^n)-k*ZEB1
+ZEB2'=as*ZEB2^n/(sa^n+ZEB2^n)+a*TWIST1^n/(sa^n+TWIST1^n)+a*SNAI1^n/(sa^n+SNAI1^n)+a*GSC^n/(sa^n+GSC^n)-k*ZEB2
+SNAI1'=b*sb^n/(sb^n+SNAI1^n)+b*sb^n/(sb^n+Ovol2^n)+a*GSC^n/(sa^n+GSC^n)-k*SNAI1
+SNAI2'=a*TWIST1^n/(sa^n+TWIST1^n)+a*TGFbeta^n/(sa^n+TGFbeta^n)+as*SNAI2^n/(sa^n+SNAI2^n)-k*SNAI2
+TWIST1'=a*SNAI1^n/(sa^n+SNAI1^n)-k*TWIST1
+FOXC2'=a*TWIST1^n/(sa^n+TWIST1^n)+a*SNAI1^n/(sa^n+SNAI1^n)+a*GSC^n/(sa^n+GSC^n)-k*FOXC2
+GSC'=a*TGFbeta^n/(sa^n+TGFbeta^n)-k*GSC
+TCF3'=a*TWIST1^n/(sa^n+TWIST1^n)-k*TCF3
+VIM'=a*ZEB2^n/(sa^n+ZEB2^n)+a*ZEB1^n/(sa^n+ZEB1^n)+a*TWIST1^n/(sa^n+TWIST1^n)+a*SNAI2^n/(sa^n+SNAI2^n)+a*SNAI1^n/(sa^n+SNAI1^n)+b*sb^n/(sb^n+Ovol2^n)-k*VIM
+#
+miR145'=b*sb^n/(sb^n+ZEB1^n)-k*miR145
+miR141'=b*sb^n/(sb^n+ZEB1^n)-k*miR141
+miR200'=b*sb^n/(sb^n+ZEB2^n)+b*sb^n/(sb^n+ZEB1^n)+b*sb^n/(sb^n+SNAI2^n)+b*sb^n/(sb^n+SNAI1^n)-k*miR200
+miR34a'=b*sb^n/(sb^n+ZEB1^n)+b*sb^n/(sb^n+SNAI1^n)-k*miR34a
+Ovol2'=b*sb^n/(sb^n+ZEB1^n)-k*Ovol2
+CDH1'=b*sb^n/(sb^n+ZEB2^n)+b*sb^n/(sb^n+ZEB1^n)+b*sb^n/(sb^n+TWIST1^n)+b*sb^n/(sb^n+TCF3^n)+b*sb^n/(sb^n+SNAI2^n)+b*sb^n/(sb^n+SNAI1^n)+b*sb^n/(sb^n+FOXC2^n)-k*CDH1
+#
+param a=2, as=7.9, b=4, sa=5.8, sb=0.21, n=4,  k=1
+@ total=500, xp=t, yp=ZEB1, dt=0.01, xlo=0, xhi=500, ylo=0, yhi=50, maxstor=500000
+done
+

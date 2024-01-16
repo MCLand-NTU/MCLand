@@ -1,0 +1,16 @@
+# Chunhe_2015_CR.ode
+# Based on Li et al. (2015) Quantifying the Landscape for Development and Cancer from a Core Cancer Stem Cell Circuit
+#
+p53'=0.8*p53^4/(0.5^4+p53^4)+0.1*0.5^4/(0.5^4+MDM2^4)-p53
+MDM2'=0.5*p53^4/(0.5^4+p53^4)+0.1*0.5^4/(0.5^4+miR145^4)-MDM2
+OCT4'=0.8*OCT4^4/(0.5^4+OCT4^4)+0.1*0.5^4/(0.5^4+p53^4)+0.1*0.5^4/(0.5^4+miR145^4)-OCT4
+miR145'=0.5*p53^4/(0.5^4+p53^4)+0.1*0.5^4/(0.5^4+OCT4^4)+0.1*0.5^4/(0.5^4+Zeb^4)-miR145
+Zeb'=0.8*Zeb^4/(0.5^4+Zeb^4)+0.1*0.5^4/(0.5^4+miR145^4)+0.1*0.5^4/(0.5^4+miR200^4)-Zeb
+miR200'=0.5*p53^4/(0.5^4+p53^4)+0.5*OCT4^4/(0.5^4+OCT4^4)+0.1*0.5^4/(0.5^4+Zeb^4)-miR200
+init p53=1, OCT4=1, Zeb=1, miR200=1, MDM2=1, miR145=1
+@ total=128, xp=x, yp=y, dt=0.1, xlo=-5, xhi=5, ylo=-5, yhi=5, maxstor=500000
+# AUTO stuff
+@ AutoXMin=0, AutoXMax=15
+@ AutoYMin=0, AutoYMax=15
+@ Nmax=1000, NPr=200, ParMin=0, ParMax=20, Ds=0.01
+done

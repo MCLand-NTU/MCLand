@@ -1,0 +1,13 @@
+u'=alpha1/(1+v^n)-u
+v'=alpha2/(1+u^m)-v
+param alpha1=3, alpha2=3, n=3, m=3
+init u=0.1, v=0.2
+@ total=30, dt=0.1
+@ nplots=2, yp1=u, yp2=v, xlo=0, xhi=30, ylo=0, yhi=4, maxstor=500000
+# AUTO stuff
+@ AutoXMin=0, AutoXMax=15
+@ AutoYMin=0, AutoYMax=15
+@ Nmax=1000, NPr=200, ParMin=0, ParMax=20, Ds=0.01
+done
+
+
