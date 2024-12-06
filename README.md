@@ -10,3 +10,5 @@ conda install -c sbmlteam python-libsbml
 Once you have set up the Python 3.6 interpreter, e.g. add the system variable to path C:\ProgramData\Anaconda3, 
 C:\ProgramData\Anaconda3\Scripts, C:\ProgramData\Anaconda3\Library\bin, you are ready to use Anaconda3 Spyder (a Python IDE)
 to open the MCLand_ver1.py file and run the program to start the Graphical User Interface.
+
+For detials on how to use MCLand please read the User Manual.
